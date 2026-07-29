@@ -14,11 +14,11 @@ app.use(express.json());
 // Initialize Gemini AI Client
 function getGeminiClient() {
   const apiKey = process.env.GEMINI_API_KEY;
-  if (!apiKey) {
-    console.warn("Warning: GEMINI_API_KEY is not set in environment variables.");
+  if (!apiKey || apiKey.trim() === "" || apiKey === "MY_GEMINI_API_KEY") {
+    throw new Error("GEMINI_API_KEY environment variable is not set or contains a placeholder. Please check your environment configuration.");
   }
   return new GoogleGenAI({
-    apiKey: apiKey || "",
+    apiKey: apiKey.trim(),
     httpOptions: {
       headers: {
         "User-Agent": "aistudio-build",

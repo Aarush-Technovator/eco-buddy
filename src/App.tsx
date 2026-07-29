@@ -105,7 +105,15 @@ export default function App() {
       }
 
       if (!response.ok) {
-        throw new Error(`Server returned HTTP ${response.status}`);
+        let serverErrDetail = `Server returned HTTP ${response.status}`;
+        try {
+          const errData = await response.json();
+          if (errData?.error) serverErrDetail = errData.error;
+          if (errData?.details) serverErrDetail += ` (${errData.details})`;
+        } catch {
+          // ignore json parse error
+        }
+        throw new Error(serverErrDetail);
       }
 
       const data = await response.json();
@@ -119,18 +127,16 @@ export default function App() {
       setMessages((prev) => [...prev, assistantMsg]);
     } catch (err: any) {
       console.error('Chat error:', err);
-      // Fallback response with helpful eco tip if network error occurs
+      const errorMessage = err?.message || 'Connection issue with AI service.';
       const fallbackMsg: ChatMessage = {
         id: `msg-err-${Date.now()}`,
         role: 'assistant',
-        content: `🌱 **Eco Buddy Tip**: I had trouble connecting to the AI server. 
+        content: `⚠️ **Connection Notice**: ${errorMessage}
 
-Here is a quick advice for you:
-- **Water**: Turn off the faucet while brushing your teeth to save up to 4 gallons per minute!
-- **Energy**: Wash your laundry in cold water to slash machine energy use by 90%.
-- **Recycling**: Rinse plastic and glass containers so leftover food doesn't contaminate paper recycling.
-
-*(If you are hosting on Netlify, please ensure GEMINI_API_KEY is added to Netlify Environment Variables!)*`,
+🌱 **Quick Eco Tips in the Meantime**:
+- **Water**: Turn off the tap while brushing to save ~4 gallons/min.
+- **Energy**: Wash clothes in cold water to reduce washing machine energy by up to 90%.
+- **Recycling**: Rinse containers clean before placing them in recycling bins.`,
         timestamp: new Date(),
       };
       setMessages((prev) => [...prev, fallbackMsg]);
