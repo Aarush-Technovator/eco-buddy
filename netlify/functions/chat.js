@@ -1,6 +1,6 @@
-const { GoogleGenAI } = require("@google/genai");
+import { GoogleGenAI } from "@google/genai";
 
-exports.handler = async (event, context) => {
+export const handler = async (event, context) => {
   if (event.httpMethod !== "POST") {
     return {
       statusCode: 405,
@@ -15,12 +15,12 @@ exports.handler = async (event, context) => {
     if (!apiKey) {
       return {
         statusCode: 500,
-        body: JSON.stringify({ error: "GEMINI_API_KEY is not configured on Netlify environment variables." }),
+        body: JSON.stringify({ error: "GEMINI_API_KEY environment variable is not set on Netlify." }),
       };
     }
 
     const ai = new GoogleGenAI({
-      apiKey: apiKey,
+      apiKey: apiKey.trim(),
       httpOptions: {
         headers: {
           "User-Agent": "aistudio-build-netlify",
@@ -61,3 +61,4 @@ exports.handler = async (event, context) => {
     };
   }
 };
+
