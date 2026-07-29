@@ -1,0 +1,6 @@
+{
+  "name": "Eco Buddy AI",
+  "description": "An AI assistant that provides eco-friendly tips, daily sustainability challenges, water and energy saving guidance, recycling advice, and sustainable transport tips.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
