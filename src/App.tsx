@@ -44,6 +44,32 @@ export default function App() {
 
   const [isExportModalOpen, setIsExportModalOpen] = useState<boolean>(false);
 
+  // Dark / Light Theme Mode
+  const [darkMode, setDarkMode] = useState<boolean>(() => {
+    const saved = localStorage.getItem('eco_dark_mode');
+    if (saved !== null) {
+      try {
+        return JSON.parse(saved);
+      } catch (e) {
+        console.error('Failed to parse dark mode setting:', e);
+      }
+    }
+    return window.matchMedia('(prefers-color-scheme: dark)').matches;
+  });
+
+  useEffect(() => {
+    localStorage.setItem('eco_dark_mode', JSON.stringify(darkMode));
+    if (darkMode) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+  }, [darkMode]);
+
+  const toggleDarkMode = () => {
+    setDarkMode((prev) => !prev);
+  };
+
   // Sync state to localStorage
   useEffect(() => {
     localStorage.setItem('eco_buddy_messages', JSON.stringify(messages));
@@ -170,14 +196,15 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 text-slate-800 font-sans selection:bg-emerald-100 selection:text-emerald-900">
+    <div className="min-h-screen bg-[#F7F8F3] dark:bg-[#0B160E] text-[#1B3022] dark:text-[#F7F8F3] font-sans selection:bg-[#A7C957] selection:text-[#1B3022] transition-colors duration-300">
       {/* Navbar */}
       <Navbar
         activeTab={activeTab}
         setActiveTab={setActiveTab}
         userPoints={userPoints}
         streakDays={streakDays}
-        onOpenExportModal={() => setIsExportModalOpen(true)}
+        darkMode={darkMode}
+        onToggleDarkMode={toggleDarkMode}
       />
 
       {/* Main Container */}

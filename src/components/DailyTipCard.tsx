@@ -88,10 +88,10 @@ export const DailyTipCard: React.FC<DailyTipCardProps> = ({
               setSelectedCategory(cat);
               setActiveTipIndex(0);
             }}
-            className={`px-4 py-1.5 rounded-full text-[11px] font-bold uppercase tracking-wider transition ${
+            className={`px-4 py-1.5 rounded-full text-[11px] font-bold uppercase tracking-wider transition cursor-pointer ${
               selectedCategory === cat
-                ? 'bg-[#1B3022] text-[#F7F8F3] shadow-xs'
-                : 'bg-white text-[#1B3022]/70 border border-[#1B3022]/10 hover:bg-[#E8EDE0]'
+                ? 'bg-[#1B3022] dark:bg-[#A7C957] text-[#F7F8F3] dark:text-[#1B3022] shadow-xs'
+                : 'bg-white dark:bg-white/10 text-[#1B3022]/70 dark:text-[#F7F8F3]/70 border border-[#1B3022]/10 dark:border-white/10 hover:bg-[#E8EDE0] dark:hover:bg-white/20'
             }`}
           >
             {cat === 'electricity' ? 'Energy' : cat}
@@ -176,9 +176,9 @@ export const DailyTipCard: React.FC<DailyTipCardProps> = ({
 
       {/* Grid of Saved or Other Tips */}
       <div className="space-y-4">
-        <h3 className="text-xs font-bold uppercase tracking-widest text-[#1B3022]/60 flex items-center justify-between">
+        <h3 className="text-xs font-bold uppercase tracking-widest text-[#1B3022]/60 dark:text-[#F7F8F3]/60 flex items-center justify-between">
           <span>Curated Eco Tips Archive</span>
-          <span className="text-xs text-[#1B3022]/50 font-normal italic">{tipsList.length} tips available</span>
+          <span className="text-xs text-[#1B3022]/50 dark:text-[#F7F8F3]/50 font-normal italic">{tipsList.length} tips available</span>
         </h3>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -189,35 +189,35 @@ export const DailyTipCard: React.FC<DailyTipCardProps> = ({
             return (
               <div
                 key={t.id}
-                className="bg-white rounded-[24px] p-6 border border-[#1B3022]/10 shadow-2xs hover:border-[#1B3022]/30 transition space-y-4 flex flex-col justify-between"
+                className="bg-white dark:bg-[#122217] rounded-[24px] p-6 border border-[#1B3022]/10 dark:border-white/10 shadow-2xs hover:border-[#1B3022]/30 dark:hover:border-white/30 transition space-y-4 flex flex-col justify-between"
               >
                 <div>
                   <div className="flex items-center justify-between mb-3">
-                    <span className="text-[10px] uppercase font-bold opacity-50 tracking-wider">
+                    <span className="text-[10px] uppercase font-bold opacity-50 tracking-wider text-[#1B3022] dark:text-[#F7F8F3]">
                       {b.label}
                     </span>
 
                     <button
                       onClick={() => onToggleSaveTip(t.id)}
-                      className="text-[#1B3022]/40 hover:text-[#1B3022] transition"
+                      className="text-[#1B3022]/40 dark:text-white/40 hover:text-[#1B3022] dark:hover:text-white transition cursor-pointer"
                     >
                       {saved ? (
-                        <BookmarkCheck className="w-4 h-4 text-[#6A994E]" />
+                        <BookmarkCheck className="w-4 h-4 text-[#6A994E] dark:text-[#A7C957]" />
                       ) : (
                         <Bookmark className="w-4 h-4" />
                       )}
                     </button>
                   </div>
 
-                  <h4 className="editorial-serif text-2xl font-normal italic text-[#1B3022] leading-snug">{t.title}</h4>
-                  <p className="text-xs text-[#1B3022]/70 mt-2 line-clamp-2 leading-relaxed">{t.description}</p>
+                  <h4 className="editorial-serif text-2xl font-normal italic text-[#1B3022] dark:text-[#F7F8F3] leading-snug">{t.title}</h4>
+                  <p className="text-xs text-[#1B3022]/70 dark:text-[#F7F8F3]/80 mt-2 line-clamp-2 leading-relaxed">{t.description}</p>
                 </div>
 
-                <div className="pt-3 border-t border-[#1B3022]/10 flex items-center justify-between text-xs">
-                  <span className="text-[#6A994E] font-medium text-[11px] italic">{t.impact}</span>
+                <div className="pt-3 border-t border-[#1B3022]/10 dark:border-white/10 flex items-center justify-between text-xs">
+                  <span className="text-[#6A994E] dark:text-[#A7C957] font-medium text-[11px] italic">{t.impact}</span>
                   <button
                     onClick={() => onAskChatAboutTip(t)}
-                    className="text-[#1B3022] hover:text-[#6A994E] font-bold text-[10px] uppercase tracking-wider flex items-center space-x-1"
+                    className="text-[#1B3022] dark:text-[#F7F8F3] hover:text-[#6A994E] dark:hover:text-[#A7C957] font-bold text-[10px] uppercase tracking-wider flex items-center space-x-1 cursor-pointer"
                   >
                     <span>Discuss</span>
                     <ArrowRight className="w-3 h-3" />

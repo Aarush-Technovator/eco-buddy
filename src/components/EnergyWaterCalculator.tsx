@@ -64,20 +64,20 @@ What are the next top 3 highest-leverage actions I can take to increase my savin
       {/* Main Grid: Inputs vs Real-time Results */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Controls Column (2 cols wide) */}
-        <div className="lg:col-span-2 bg-white rounded-[24px] p-6 sm:p-8 border border-[#1B3022]/10 shadow-2xs space-y-6">
-          <h3 className="editorial-serif text-2xl font-normal italic text-[#1B3022] border-b border-[#1B3022]/10 pb-3 flex items-center justify-between">
+        <div className="lg:col-span-2 bg-white dark:bg-[#122217] rounded-[24px] p-6 sm:p-8 border border-[#1B3022]/10 dark:border-white/10 shadow-2xs space-y-6">
+          <h3 className="editorial-serif text-2xl font-normal italic text-[#1B3022] dark:text-[#F7F8F3] border-b border-[#1B3022]/10 dark:border-white/10 pb-3 flex items-center justify-between">
             <span>Household Daily Habits</span>
-            <span className="text-xs text-[#6A994E] font-bold uppercase tracking-wider not-italic">Interactive Audit</span>
+            <span className="text-xs text-[#6A994E] dark:text-[#A7C957] font-bold uppercase tracking-wider not-italic">Interactive Audit</span>
           </h3>
 
           {/* 1. Shower Minutes Slider */}
           <div className="space-y-3">
             <div className="flex justify-between items-center text-xs">
-              <label className="font-semibold text-[#1B3022] flex items-center gap-2">
-                <Droplet className="w-4 h-4 text-[#6A994E]" />
+              <label className="font-semibold text-[#1B3022] dark:text-[#F7F8F3] flex items-center gap-2">
+                <Droplet className="w-4 h-4 text-[#6A994E] dark:text-[#A7C957]" />
                 Daily Shower Duration
               </label>
-              <span className="font-bold text-[#1B3022] bg-[#E8EDE0] px-3 py-1 rounded-full border border-[#1B3022]/10">
+              <span className="font-bold text-[#1B3022] dark:text-[#F7F8F3] bg-[#E8EDE0] dark:bg-white/10 px-3 py-1 rounded-full border border-[#1B3022]/10 dark:border-white/10">
                 {showerMinutes} Minutes
               </span>
             </div>
@@ -87,9 +87,9 @@ What are the next top 3 highest-leverage actions I can take to increase my savin
               max="20"
               value={showerMinutes}
               onChange={(e) => setShowerMinutes(Number(e.target.value))}
-              className="w-full accent-[#1B3022] cursor-pointer"
+              className="w-full accent-[#1B3022] dark:accent-[#A7C957] cursor-pointer"
             />
-            <div className="flex justify-between text-[10px] text-[#1B3022]/50 font-semibold uppercase tracking-wider">
+            <div className="flex justify-between text-[10px] text-[#1B3022]/50 dark:text-[#F7F8F3]/50 font-semibold uppercase tracking-wider">
               <span>3 min (Eco)</span>
               <span>10 min (Avg)</span>
               <span>20 min (High)</span>
@@ -98,7 +98,7 @@ What are the next top 3 highest-leverage actions I can take to increase my savin
 
           {/* 2. Laundry Temperature */}
           <div className="space-y-3">
-            <label className="text-xs font-semibold text-[#1B3022] block">
+            <label className="text-xs font-semibold text-[#1B3022] dark:text-[#F7F8F3] block">
               Laundry Wash Water Temperature
             </label>
             <div className="grid grid-cols-3 gap-3">
@@ -106,10 +106,10 @@ What are the next top 3 highest-leverage actions I can take to increase my savin
                 <button
                   key={temp}
                   onClick={() => setWashTemp(temp)}
-                  className={`py-2.5 px-3 rounded-full text-xs font-bold uppercase tracking-wider transition border ${
+                  className={`py-2.5 px-3 rounded-full text-xs font-bold uppercase tracking-wider transition border cursor-pointer ${
                     washTemp === temp
-                      ? 'bg-[#1B3022] text-[#F7F8F3] border-[#1B3022]'
-                      : 'bg-[#F7F8F3] text-[#1B3022]/70 border-[#1B3022]/10 hover:bg-[#E8EDE0]'
+                      ? 'bg-[#1B3022] dark:bg-[#A7C957] text-[#F7F8F3] dark:text-[#1B3022] border-[#1B3022] dark:border-[#A7C957]'
+                      : 'bg-[#F7F8F3] dark:bg-white/10 text-[#1B3022]/70 dark:text-[#F7F8F3]/70 border-[#1B3022]/10 dark:border-white/10 hover:bg-[#E8EDE0] dark:hover:bg-white/20'
                   }`}
                 >
                   {temp} Wash
@@ -119,17 +119,17 @@ What are the next top 3 highest-leverage actions I can take to increase my savin
           </div>
 
           {/* 3. Phantom Power Load Unplugging */}
-          <div className="flex items-center justify-between p-4 bg-[#F7F8F3] rounded-[20px] border border-[#1B3022]/10">
+          <div className="flex items-center justify-between p-4 bg-[#F7F8F3] dark:bg-white/5 rounded-[20px] border border-[#1B3022]/10 dark:border-white/10">
             <div>
-              <span className="text-xs font-bold text-[#1B3022] block">Unplug Electronics Nightly</span>
-              <span className="text-[11px] text-[#1B3022]/60">Stops phantom vampire draw from devices</span>
+              <span className="text-xs font-bold text-[#1B3022] dark:text-[#F7F8F3] block">Unplug Electronics Nightly</span>
+              <span className="text-[11px] text-[#1B3022]/60 dark:text-[#F7F8F3]/60">Stops phantom vampire draw from devices</span>
             </div>
             <button
               onClick={() => setUnplugPhantom(!unplugPhantom)}
-              className={`px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider transition ${
+              className={`px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider transition cursor-pointer ${
                 unplugPhantom
-                  ? 'bg-[#1B3022] text-[#A7C957]'
-                  : 'bg-[#E8EDE0] text-[#1B3022]/60 hover:bg-[#1B3022]/10'
+                  ? 'bg-[#1B3022] dark:bg-[#A7C957] text-[#A7C957] dark:text-[#1B3022]'
+                  : 'bg-[#E8EDE0] dark:bg-white/10 text-[#1B3022]/60 dark:text-[#F7F8F3]/60 hover:bg-[#1B3022]/10 dark:hover:bg-white/20'
               }`}
             >
               {unplugPhantom ? 'Active' : 'Off'}
@@ -139,8 +139,8 @@ What are the next top 3 highest-leverage actions I can take to increase my savin
           {/* 4. LED Lighting Percentage */}
           <div className="space-y-3">
             <div className="flex justify-between items-center text-xs">
-              <label className="font-semibold text-[#1B3022]">Percentage of LED Bulbs in Home</label>
-              <span className="font-bold text-[#1B3022] bg-[#E8EDE0] px-3 py-1 rounded-full border border-[#1B3022]/10">
+              <label className="font-semibold text-[#1B3022] dark:text-[#F7F8F3]">Percentage of LED Bulbs in Home</label>
+              <span className="font-bold text-[#1B3022] dark:text-[#F7F8F3] bg-[#E8EDE0] dark:bg-white/10 px-3 py-1 rounded-full border border-[#1B3022]/10 dark:border-white/10">
                 {ledPercentage}% LEDs
               </span>
             </div>
@@ -151,22 +151,22 @@ What are the next top 3 highest-leverage actions I can take to increase my savin
               step="10"
               value={ledPercentage}
               onChange={(e) => setLedPercentage(Number(e.target.value))}
-              className="w-full accent-[#1B3022] cursor-pointer"
+              className="w-full accent-[#1B3022] dark:accent-[#A7C957] cursor-pointer"
             />
           </div>
 
           {/* 5. Thermostat Eco Setback */}
-          <div className="flex items-center justify-between p-4 bg-[#F7F8F3] rounded-[20px] border border-[#1B3022]/10">
+          <div className="flex items-center justify-between p-4 bg-[#F7F8F3] dark:bg-white/5 rounded-[20px] border border-[#1B3022]/10 dark:border-white/10">
             <div>
-              <span className="text-xs font-bold text-[#1B3022] block">Smart Thermostat Eco Setback (2° Adj.)</span>
-              <span className="text-[11px] text-[#1B3022]/60">Adjust thermostat 2° cooler in winter / warmer in summer</span>
+              <span className="text-xs font-bold text-[#1B3022] dark:text-[#F7F8F3] block">Smart Thermostat Eco Setback (2° Adj.)</span>
+              <span className="text-[11px] text-[#1B3022]/60 dark:text-[#F7F8F3]/60">Adjust thermostat 2° cooler in winter / warmer in summer</span>
             </div>
             <button
               onClick={() => setThermostatEco(!thermostatEco)}
-              className={`px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider transition ${
+              className={`px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider transition cursor-pointer ${
                 thermostatEco
-                  ? 'bg-[#1B3022] text-[#A7C957]'
-                  : 'bg-[#E8EDE0] text-[#1B3022]/60 hover:bg-[#1B3022]/10'
+                  ? 'bg-[#1B3022] dark:bg-[#A7C957] text-[#A7C957] dark:text-[#1B3022]'
+                  : 'bg-[#E8EDE0] dark:bg-white/10 text-[#1B3022]/60 dark:text-[#F7F8F3]/60 hover:bg-[#1B3022]/10 dark:hover:bg-white/20'
               }`}
             >
               {thermostatEco ? 'Active' : 'Off'}

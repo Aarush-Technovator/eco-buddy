@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @layer utilities {
   .font-serif-editorial {
     font-family: 'Cormorant Garamond', Georgia, serif;
@@ -10,6 +12,12 @@ body {
   font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
   background-color: #F7F8F3;
   color: #1B3022;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+html.dark body, body.dark {
+  background-color: #0B160E;
+  color: #F7F8F3;
 }
 
 .editorial-serif {
@@ -23,14 +31,15 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: #F7F8F3;
+  background: transparent;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(27, 48, 34, 0.15);
+  background: rgba(167, 201, 87, 0.3);
   border-radius: 9999px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(27, 48, 34, 0.3);
+  background: rgba(167, 201, 87, 0.5);
 }
+
